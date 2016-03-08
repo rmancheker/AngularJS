@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<script type="text/javascript">
+		//Form validation using Angular.
+	var ans = angular.module("myapp",[]);
+
+	ans.controller("add",function($scope){
+		$scope.val = 120;
+	});
+
+	ans.controller("sub",function($scope){
+		$scope.val = 200;
+	});
+
+	ans.controller('getData',function($scope,$http){
+		$http.get('phpdata.php').success(function(err,res){
+			if(err){
+				$scope.data = err.code;
+				return;
+			}
+			$scope.data = res;
+		});
+	});
+
+
+
+	</script>
+
+
+
+</head>
+<body >
+<div ng-init="record=10">
+	{{10+20+record}}<br/>
+	<input type="text" ng-model='mydata'></input><br/>
+	<span ng-bind='mydata'></span>
+</div>
+
+<input type="text"ng-model='dosearch'></input>
+<div ng-init="fam=[{name:'Raj',age:20},{name:'Rishabh',age:5},{name:'Rhea',age:8}]">
+	<ul ng-repeat="answer in fam | filter:dosearch">
+		<li>'Name -> '{{answer.name}} 'age -> ' {{answer.age}}</li>
+	</ul>
+</div>
+
+<input type="text" ng-model="val1"></input>
+<input type="text" ng-model="val2"></input>
+
+<div ng-controller='add'>{{val}}</div>
+<div ng-controller='sub'>{{val}}</div>
+
+<!--  Data from php object using $http -->
+<div ng-controller='getData'>
+	<ul ng-repeat='ans in data'>
+		<li>{{answer.name}}' - '{{answer.age}}</li>
+	</ul>
+</div>
+<script type="text/javascript" src="angular-1.5.0/angular.js"></script>
+</body>
+</html>
