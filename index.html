@@ -3,31 +3,34 @@
 <head>
 	<title>Form Validation</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
 </head>
 <body >
 
 <div>
-     <div class="container main-container" ng-controller="validateform">
+
+     <div class="container main-container main" ng-controller="validateform">
+      <h2>Form Validation</h2>
            <form ng-submit="onSubmit()" novalidate="novalidate">
                <div class="form-group">
                    <label for="name">Name</label>
                    <input type="text" class="form-control" id="name" ng-model="formModel.name" required="required"
                    			ng-pattern="/^[a-zA-Z]{1,30}$/" ng-pattern-err-type="badname">
                </div>
-               <div class="form-group">
+                <div class="form-group">
                    <label for="username">Username</label>
                    <input type="text" class="form-control" id="username" ng-model="formModel.username" ng-pattern="/^[A-Za-z0-9_]{1,15}$/" ng-minlength="7" required="required" ng-pattern-err-type="badusername">
+               </div>
+               <div class="form-group">
+                   <label for="email">Email</label>
+                   <input type="email" class="form-control" id="email" ng-model="formModel.email" name='email' required="required">
                </div>
                  <div class="form-group">
                    <label for="password">Password</label>
                    <input type="password" class="form-control" id="password" ng-model="formModel.password" required="required" ng-minlength="7">
                </div>
                <div class="form-group">
-                   <label for="email">Email</label>
-                   <input type="email" class="form-control" id="email" ng-model="formModel.email" name='email' required="required">
-               </div>
-                <div class="form-group">
                    <label for="age">Age</label>
                    <input type="number" class="form-control" id="age" ng-model="formModel.age" required="required" min="18" max="80"
                    			ng-min-err-type="minage" ng-max-err-type="maxage"	>
@@ -43,8 +46,8 @@
                <div class="form-group">
                    <button class="btn btn-primary" type='submit'>Register</button>
                </div>
+               <pre ng-show="fb">{{formModel | json}}</pre>
            </form>
-          <!--  <pre>{{formModel | json}}</pre> -->
      </div>
 </div>
 

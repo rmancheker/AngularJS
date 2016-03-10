@@ -14,8 +14,9 @@ app.run(function(defaultErrorMessageResolver){
 
 app.controller('validateform', function ($scope) {
     $scope.formModel = {};
-    
+    $scope.fb = false;
     $scope.onSubmit = function () {
+    		$scope.fb = true;
     		console.log($scope.formModel);	
     	}
 });
